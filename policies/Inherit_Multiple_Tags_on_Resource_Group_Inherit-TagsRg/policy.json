@@ -1,0 +1,109 @@
+{
+ "properties": {
+  "displayName": "Inherit Multiple Tags on Resource Group",
+  "policyType": "Custom",
+  "mode": "All",
+  "description": "Inherit servicetype, billing, creator, project tags.",
+  "metadata": {
+   "version": "1.0.0",
+   "category": "Tags",
+   "createdBy": "076e7439-151e-49a3-bd84-b82b85cfeccc",
+   "createdOn": "2022-02-25T22:57:08.0258036Z",
+   "updatedBy": "076e7439-151e-49a3-bd84-b82b85cfeccc",
+   "updatedOn": "2022-02-25T23:10:17.7579159Z"
+  },
+  "parameters": {
+   "ServiceType": {
+    "type": "String",
+    "metadata": {
+     "description": "What is the service going into resource group (security,base infrastructure, shared services, network,etc.)"
+    }
+   },
+   "Billing": {
+    "type": "String",
+    "metadata": {
+     "description": "who is does this get billed to (department/deparment code)"
+    }
+   },
+   "Creator": {
+    "type": "String",
+    "metadata": {
+     "description": "who created the project name@domain.com"
+    }
+   },
+   "Project": {
+    "type": "String",
+    "metadata": {
+     "description": "Name of the Project"
+    }
+   }
+  },
+  "policyRule": {
+   "if": {
+    "allOf": [
+     {
+      "field": "type",
+      "equals": "Microsoft.Resources/subscriptions/resourceGroups"
+     },
+     {
+      "not": {
+       "field": "[concat('tags[',parameters('ServiceType'), ']')]",
+       "exists": "true"
+      }
+     },
+     {
+      "not": {
+       "field": "[concat('tags[',parameters('Billing'), ']')]",
+       "exists": "true"
+      }
+     },
+     {
+      "not": {
+       "field": "[concat('tags[',parameters('Creator'), ']')]",
+       "exists": "true"
+      }
+     },
+     {
+      "not": {
+       "field": "[concat('tags[',parameters('Project'), ']')]",
+       "exists": "true"
+      }
+     }
+    ]
+   },
+   "then": {
+    "effect": "modify",
+    "details": {
+     "roleDefinitionIds": [
+      "/providers/microsoft.authorization/roleDefinitions/b24988ac-6180-42a0-ab88-20f7382dd24c"
+     ],
+     "operations": [
+      {
+       "operation": "add",
+       "field": "[concat('tags[', parameters('ServiceType'), ']')]",
+       "value": "[resourceGroup().tags[parameters('ServiceType')]]"
+      },
+      {
+       "operation": "add",
+       "field": "[concat('tags[', parameters('Billing'), ']')]",
+       "value": "[resourceGroup().tags[parameters('Billing')]]"
+      },
+      {
+       "operation": "add",
+       "field": "[concat('tags[', parameters('Creator'), ']')]",
+       "value": "[resourceGroup().tags[parameters('Creator')]]"
+      },
+      {
+       "operation": "add",
+       "field": "[concat('tags[', parameters('Project'), ']')]",
+       "value": "[resourceGroup().tags[parameters('Project')]]"
+      }
+     ]
+    }
+   }
+  }
+ },
+ "id": "/providers/Microsoft.Management/managementGroups/NBB/providers/Microsoft.Authorization/policyDefinitions/Inherit-TagsRg",
+ "type": "Microsoft.Authorization/policyDefinitions",
+ "name": "Inherit-TagsRg"
+}
