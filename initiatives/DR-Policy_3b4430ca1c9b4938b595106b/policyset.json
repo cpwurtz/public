@@ -1,0 +1,49 @@
+{
+ "properties": {
+  "displayName": "DR-Policy",
+  "policyType": "Custom",
+  "metadata": {
+   "createdBy": "076e7439-151e-49a3-bd84-b82b85cfeccc",
+   "createdOn": "2022-05-03T23:57:53.5824785Z",
+   "updatedBy": null,
+   "updatedOn": null
+  },
+  "parameters": {},
+  "policyDefinitions": [
+   {
+    "policyDefinitionReferenceId": "Audit virtual machines without disaster recovery configured_1",
+    "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/0015ea4d-51ff-4ce3-8d8c-f3f8f0179a56",
+    "parameters": {},
+    "groupNames": []
+   },
+   {
+    "policyDefinitionReferenceId": "Geo-redundant backup should be enabled for Azure Database for MariaDB_1",
+    "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/0ec47710-77ff-4a3d-9181-6aa50af424d0",
+    "parameters": {},
+    "groupNames": []
+   },
+   {
+    "policyDefinitionReferenceId": "Geo-redundant backup should be enabled for Azure Database for PostgreSQL_1",
+    "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/48af4db5-9b8b-401c-8e74-076be876a430",
+    "parameters": {},
+    "groupNames": []
+   },
+   {
+    "policyDefinitionReferenceId": "Geo-redundant backup should be enabled for Azure Database for MySQL_1",
+    "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/82339799-d096-41ae-8538-b108becf0970",
+    "parameters": {},
+    "groupNames": []
+   },
+   {
+    "policyDefinitionReferenceId": "Geo-redundant storage should be enabled for Storage Accounts_1",
+    "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/bf045164-79ba-4215-8f95-f8048dc1780b",
+    "parameters": {},
+    "groupNames": []
+   }
+  ],
+  "policyDefinitionGroups": []
+ },
+ "id": "/providers/Microsoft.Management/managementGroups/NBB-Legacy/providers/Microsoft.Authorization/policySetDefinitions/3b4430ca1c9b4938b595106b",
+ "type": "Microsoft.Authorization/policySetDefinitions",
+ "name": "3b4430ca1c9b4938b595106b"
+}
